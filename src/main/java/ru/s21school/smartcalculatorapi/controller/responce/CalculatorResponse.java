@@ -1,0 +1,15 @@
+package ru.s21school.smartcalculatorapi.controller.responce;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CalculatorResponse {
+    private String expression;
+    private Double result;
+}
