@@ -11,9 +11,10 @@ import ru.s21school.smartcalculatorapi.model.calculator.Calculator;
 public class CalculatorService {
     public final Calculator calculator;
 
-    public double calculate(String expression) {
+    public double calculate(String expression, String historyUUID) {
         double result = calculator.calculate(expression);
         //todo save to db
+        log.info(historyUUID);
         return result;
     }
 }

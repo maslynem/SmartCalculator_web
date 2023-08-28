@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CalculatorRequest {
+    private String historyUUID;
     private String expression;
 }

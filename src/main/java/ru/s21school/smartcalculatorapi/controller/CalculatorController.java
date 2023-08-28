@@ -18,8 +18,9 @@ public class CalculatorController {
 
     @PostMapping
     public CalculatorResponse calculate(@RequestBody CalculatorRequest request) {
+
         log.info("Expression: {}", request.getExpression());
-        double result = calculatorService.calculate(request.getExpression());
+        double result = calculatorService.calculate(request.getExpression(), request.getHistoryUUID());
         log.info("Result: {}", result);
 
         return CalculatorResponse.builder()
