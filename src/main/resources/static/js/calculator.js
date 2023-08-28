@@ -73,11 +73,7 @@ function addExpression(expression) {
 }
 
 function getCookie() {
-    if (navigator.cookieEnabled === false){
-        alert("Cookies отключены!");
-    }
     let calc_sess = document.cookie.match(/calc_sess=(.+?)(;|$)/);
-    console.log(calc_sess);
     if (calc_sess == null) {
         let uuid = generateUUID();
         document.cookie = "calc_sess=" + uuid;
