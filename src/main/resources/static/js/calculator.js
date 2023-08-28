@@ -55,7 +55,7 @@ const postData = async (data = {}) => {
 
 function addExpression(expression) {
     let tr = document.createElement("tr");
-    let td= document.createElement("td");
+    let td = document.createElement("td");
     td.style.height = "35px";
     td.innerHTML = expression;
     tr.appendChild(td);

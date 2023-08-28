@@ -16,12 +16,13 @@
 
 .btnMenu {
     font-size: 20px;
-    background-color: #f4f4f4;
-
+    /*text-align: center;*/
+    /*margin: 0 auto;*/
 }
 
-.menu_text {
-    margin-top: 5px;
+.btnMenu:hover {
+    background-color: rgb(214, 214, 214);
+    cursor: pointer;
 }
 
 .calculator {
@@ -118,3 +119,43 @@
     height: 70px;
     border-bottom: 3px;
 }
+
+.menuBtn {
+    padding: 0;
+    font-size: 18px;
+    text-align: center;
+    color: black;
+}
+
+.menuBtn:hover {
+    background: rgb(214, 214, 214);
+}
+
+.menuBtn:hover > .list_submenu {
+    display: block;
+    z-index: 100;
+}
+
+.list_submenu {
+    position: absolute;
+    padding: 0;
+    display: none;
+}
+
+.list_submenu li {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 200;
+    background: rgb(214, 214, 214);
+    text-align: left;
+}
+
+.list_submenu li:hover {
+    background-color: #FFFFFF;
+}
+
+.list_submenu a {
+    text-decoration: none;
+    color: black;
+}
+
