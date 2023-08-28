@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CalculatorErrorResponse {
+    private Status status;
     private String message;
 }

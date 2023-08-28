@@ -1,0 +1,57 @@
+.calculator {
+    max-width: 420px;
+    max-height: 420px;
+}
+
+.input {
+    min-width: 420px;
+    min-height: 60px;
+    font-size: 20px;
+    background-color: #f4f4f4;
+}
+
+.button {
+    border: 1px solid grey;
+    min-height: 60px;
+    min-width: 60px;
+}
+
+.gr {
+    color: black;
+    background-color: rgb(214, 214, 214);
+}
+
+.gr:hover {
+    background-color: rgb(178, 178, 178);
+
+}
+
+.gr:active {
+    background-color: rgb(138, 137, 137);
+
+}
+
+.gold {
+    color: #FFFFFF;
+    background-color: rgb(254, 147, 64);
+}
+
+.gold:hover {
+    background-color: rgb(202, 116, 49);
+}
+
+.gold:active {
+    background-color: rgb(175, 100, 42);
+}
+
+.empty_field {
+    color: black;
+    background-color: rgb(214, 214, 214);
+    border: 1px solid grey;
+    min-height: 60px;
+    min-width: 180px;
+}
+
+.zero_btn {
+    width: 120px;
+}

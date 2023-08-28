@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CalculatorResponse {
+    private Status status;
     private String expression;
     private Double result;
 }

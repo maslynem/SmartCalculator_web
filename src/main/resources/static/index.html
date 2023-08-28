@@ -3,18 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculator</title>
+    <link rel="stylesheet" href="css/clearing.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style">
+    <link>
+    <link rel="stylesheet" href="css/calculator.css">
 </head>
 <body>
 
-<div class="container">
-    <div class="row justify-content-md-center">
-        <label class="col" for="syntax"></label>
-        <input class="col" id="syntax" type="text" value="">
+<div class="container calculator">
+    <div class="row">
+        <div class="col px-0">
+            <label>
+                <input class="input" id="input" type="text" value="">
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <button class="button gr" id="BtnPow">^</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnLn">ln</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnLog">log</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnC">C</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnOpBracket">(</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnClBracket">)</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gold" id="BtnDiv">/</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <button class="button gr" id="BtnAsin">asin</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnSin">sin</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnP">π</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn7">7</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn8">8</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn9">9</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gold" id="BtnMul">*</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <button class="button gr" id="BtnAcos">acos</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnCos">cos</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnSqrt">√</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn4">4</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn5">5</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn6">6</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gold" id="BtnSub">-</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <button class="button gr" id="BtnAtan">atan</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnTan">tan</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnMod">mod</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn1">1</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn2">2</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="Btn3">4</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gold" id="BtnSum">+</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col  px-0">
+            <div class="empty_field"></div>
+        </div>
+        <div class="col px-0">
+            <button class="button gr zero_btn" id="Btn0">0</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gr" id="BtnDot">.</button>
+        </div>
+        <div class="col px-0">
+            <button class="button gold" id="BtnEq">=</button>
+        </div>
     </div>
 </div>
-
+<script type="text/javascript" src="js/calculator.js"></script>
 </body>
 </html>

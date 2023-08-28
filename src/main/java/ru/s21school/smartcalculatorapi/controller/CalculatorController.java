@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.s21school.smartcalculatorapi.controller.request.CalculatorRequest;
 import ru.s21school.smartcalculatorapi.controller.responce.CalculatorErrorResponse;
 import ru.s21school.smartcalculatorapi.controller.responce.CalculatorResponse;
+import ru.s21school.smartcalculatorapi.controller.responce.Status;
 import ru.s21school.smartcalculatorapi.service.CalculatorService;
 
 @Slf4j
@@ -20,9 +21,11 @@ public class CalculatorController {
         log.info("Expression: {}", request.getExpression());
         double result = calculatorService.calculate(request.getExpression());
         log.info("Result: {}", result);
+
         return CalculatorResponse.builder()
                 .expression(request.getExpression())
                 .result(result)
+                .status(Status.OK)
                 .build();
     }
 
@@ -31,6 +34,7 @@ public class CalculatorController {
         log.warn(exception.getMessage());
         return CalculatorErrorResponse.builder()
                 .message(exception.getMessage())
+                .status(Status.ERROR)
                 .build();
     }
 }
