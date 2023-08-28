@@ -1,6 +1,16 @@
+.app {
+    width: 600px;
+    height: 420px;
+    min-width: 600px;
+    min-height: 420px;
+}
+
 .calculator {
-    max-width: 420px;
-    max-height: 420px;
+    width: 420px;
+}
+
+.history {
+    width: 180px;
 }
 
 .input {
@@ -54,4 +64,20 @@
 
 .zero_btn {
     width: 120px;
+}
+
+.table td {
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.table td:hover:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 3px solid #f4f4f4;
 }

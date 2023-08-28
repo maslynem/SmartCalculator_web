@@ -11,121 +11,148 @@
 </head>
 <body>
 
-<div class="container calculator">
+<div class="container app">
     <div class="row">
-        <div class="col px-0">
-            <label>
-                <input class="input" id="input" type="text" value="">
-            </label>
+        <div class="col calculator">
+            <div class="row">
+                <div class="col px-0">
+                    <label>
+                        <input class="input" id="input" type="text" value="">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col px-0">
+                    <button class="button gr" id="BtnPow">^</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnLn">ln</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnLog">log</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnC">C</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnOpBracket">(</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnClBracket">)</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gold" id="BtnDiv">/</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col px-0">
+                    <button class="button gr" id="BtnAsin">asin</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnSin">sin</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnP">π</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn7">7</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn8">8</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn9">9</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gold" id="BtnMul">*</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col px-0">
+                    <button class="button gr" id="BtnAcos">acos</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnCos">cos</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnSqrt">√</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn4">4</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn5">5</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn6">6</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gold" id="BtnSub">-</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col px-0">
+                    <button class="button gr" id="BtnAtan">atan</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnTan">tan</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnMod">mod</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn1">1</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn2">2</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="Btn3">4</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gold" id="BtnSum">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col  px-0">
+                    <div class="empty_field"></div>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr zero_btn" id="Btn0">0</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gr" id="BtnDot">.</button>
+                </div>
+                <div class="col px-0">
+                    <button class="button gold" id="BtnEq">=</button>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col px-0">
-            <button class="button gr" id="BtnPow">^</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnLn">ln</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnLog">log</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnC">C</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnOpBracket">(</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnClBracket">)</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gold" id="BtnDiv">/</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col px-0">
-            <button class="button gr" id="BtnAsin">asin</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnSin">sin</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnP">π</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn7">7</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn8">8</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn9">9</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gold" id="BtnMul">*</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col px-0">
-            <button class="button gr" id="BtnAcos">acos</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnCos">cos</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnSqrt">√</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn4">4</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn5">5</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn6">6</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gold" id="BtnSub">-</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col px-0">
-            <button class="button gr" id="BtnAtan">atan</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnTan">tan</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnMod">mod</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn1">1</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn2">2</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="Btn3">4</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gold" id="BtnSum">+</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col  px-0">
-            <div class="empty_field"></div>
-        </div>
-        <div class="col px-0">
-            <button class="button gr zero_btn" id="Btn0">0</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gr" id="BtnDot">.</button>
-        </div>
-        <div class="col px-0">
-            <button class="button gold" id="BtnEq">=</button>
+        <div class="col history">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center" colspan="2">History</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1+1</td>
+                    </tr>
+                    <tr>
+                        <td>2+2</td>
+                    </tr>
+                    <tr>
+                        <td>3+3</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
 <script type="text/javascript" src="js/calculator.js"></script>
 </body>
 </html>
