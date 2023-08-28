@@ -6,6 +6,24 @@
     border: 1px solid black;
 }
 
+.menu {
+    background-color: #f4f4f4;
+    height: 35px;
+    width: 420px;
+    min-height: 35px;
+    min-width: 420px;
+}
+
+.btnMenu {
+    font-size: 20px;
+    background-color: #f4f4f4;
+
+}
+
+.menu_text {
+    margin-top: 5px;
+}
+
 .calculator {
     width: 420px;
 }
@@ -15,15 +33,19 @@
 }
 
 .input {
+    width: 420px;
+    height: 35px;
     min-width: 420px;
-    min-height: 60px;
+    min-height: 35px;
     font-size: 20px;
     background-color: #f4f4f4;
 }
 
 .button {
     border: 1px solid grey;
-    min-height: 60px;
+    height: 70px;
+    width: 60px;
+    min-height: 70px;
     min-width: 60px;
 }
 
@@ -59,12 +81,15 @@
     color: black;
     background-color: rgb(214, 214, 214);
     border: 1px solid grey;
-    min-height: 60px;
+    height: 70px;
+    width: 180px;
+    min-height: 70px;
     min-width: 180px;
 }
 
 .zero_btn {
     width: 120px;
+    min-width: 120px;
 }
 
 .table td {
@@ -85,5 +110,11 @@
 
 .history {
     overflow-y: auto;
+    min-height: 420px;
     height: 420px;
+}
+
+.history thead {
+    height: 70px;
+    border-bottom: 3px;
 }

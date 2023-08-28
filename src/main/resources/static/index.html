@@ -14,10 +14,18 @@
 <div class="container app">
     <div class="row">
         <div class="col calculator">
+            <div class="row menu">
+                <div class="col-1">
+                    <button class="btnMenu" id="BtnMenu">≡</button>
+                </div>
+                <div class="col-8 menu_text">
+                    <span class="text-start">Calculator</span>
+                </div>
+            </div>
             <div class="row">
                 <div class="col px-0">
                     <label>
-                        <input class="input" id="input" type="text" value="">
+                        <input class="input px-4" id="input" type="text" value="">
                     </label>
                 </div>
             </div>
@@ -129,11 +137,11 @@
             </div>
         </div>
         <div class="col history">
-            <div class="row tableFixHead">
-                <table class="table">
-                    <thead >
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <th class="text-center" colspan="2">History</th>
+                        <th class="text-center align-middle" colspan="2">History</th>
                     </tr>
                     </thead>
                     <tbody id="tbd">
