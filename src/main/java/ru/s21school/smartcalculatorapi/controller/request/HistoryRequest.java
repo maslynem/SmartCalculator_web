@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CalculatorRequest {
+public class HistoryRequest {
     private String userUUID;
-    private String expression;
 }
