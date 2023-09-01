@@ -1,0 +1,13 @@
+.app {
+    width: 600px;
+    height: 480px;
+    min-width: 600px;
+    min-height: 480px;
+    border: 1px solid black;
+    background-color: #f4f4f4;
+}
+
+.menu {
+    height: 35px;
+    min-height: 35px;
+}
