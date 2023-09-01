@@ -77,6 +77,16 @@ btns.forEach(btn => {
     }
 });
 
+document.getElementById("clearHistoryBtn").addEventListener("click", function () {
+    console.log(historyUrl + "/clear");
+    postData(historyUrl + "/clear", {userUUID: calc_sess}).then((data) => {
+            if (data.status === "OK") {
+                location.reload();
+            }
+        }
+    );
+});
+
 
 function addExpressionToTable(expression) {
     let tr = document.createElement("tr");

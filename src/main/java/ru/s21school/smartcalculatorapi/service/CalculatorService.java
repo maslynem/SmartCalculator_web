@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.s21school.smartcalculatorapi.dto.HistoryDto;
 import ru.s21school.smartcalculatorapi.entity.History;
 import ru.s21school.smartcalculatorapi.entity.User;
 import ru.s21school.smartcalculatorapi.model.calculator.Calculator;
+import ru.s21school.smartcalculatorapi.repository.HistoryRepository;
 import ru.s21school.smartcalculatorapi.repository.UserRepository;
 
 import java.util.*;
@@ -16,10 +18,13 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class CalculatorService {
     private final Calculator calculator;
     private final UserRepository userRepository;
+    private final HistoryRepository historyRepository;
 
+    @Transactional
     public double calculate(String expression, String userUUID) {
         double result = calculator.calculate(expression);
         User user = userRepository.findByUuid(userUUID)
@@ -41,5 +46,10 @@ public class CalculatorService {
                         .map(history -> mapper.map(history, HistoryDto.class))
                         .collect(Collectors.toList()))
                 .orElse(Collections.emptyList());
+    }
+
+    @Transactional
+    public void deleteUserHistory(String userUUID) {
+        historyRepository.deleteByUser(userUUID);
     }
 }
