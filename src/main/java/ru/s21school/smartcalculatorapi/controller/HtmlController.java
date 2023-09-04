@@ -12,6 +12,7 @@ public class HtmlController {
     public String getCalculatorPage() {
         return "index";
     }
+
     @GetMapping("/graph")
     public String getGraphsPage() {
         return "graph";

@@ -1,5 +1,4 @@
 const postData = async (url, data = {}) => {
-    console.log(JSON.stringify(data));
     const response = await fetch(url, {
         method: 'POST',
         headers: {
