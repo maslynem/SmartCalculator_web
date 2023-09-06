@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.s21school.smartcalculator.model.creditCalculator.CreditCalculator;
@@ -25,14 +26,14 @@ public class CreditController {
     @GetMapping()
     public String getCreditCalcPage(Model model) {
         log.info("GET /credit-calculator");
-        model.addAttribute("creditData", new CreditInputData());
+        model.addAttribute("creditData", CreditInputData.builder().creditType(CreditType.ANNUITY).build());
         return "credit-calculator";
     }
 
     @PostMapping()
-    public String calcCredit(CreditInputData creditInputData, BindingResult bindingResult, Model model) {
+    public String calcCredit(@ModelAttribute("creditData") CreditInputData creditInputData, BindingResult bindingResult, Model model) {
        creditInputValidator.validate(creditInputData, bindingResult);
-       if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
            log.warn("POST /credit-calculator credit data has errors: {}", bindingResult.getAllErrors());
            return "credit-calculator";
        }
@@ -41,7 +42,6 @@ public class CreditController {
        } else {
            model.addAttribute("differentiatedCredit", creditCalculator.countDifferentiatedCredit(creditInputData));
        }
-       model.addAttribute("creditData", creditInputData);
        return "credit-calculator";
     }
 
