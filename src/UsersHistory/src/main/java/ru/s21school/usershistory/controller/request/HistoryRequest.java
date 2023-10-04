@@ -1,4 +1,4 @@
-package ru.s21school.calculatorapi.controller.request;
+package ru.s21school.usershistory.controller.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CalculatorRequest {
-    private String expression;
+public class HistoryRequest {
+    private String userUUID;
 }

@@ -6,13 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.s21school.calculatorapi.service.CalculatorService;
 import ru.s21school.calculatorapi.controller.request.CalculatorRequest;
 import ru.s21school.calculatorapi.controller.request.GraphRequest;
-import ru.s21school.calculatorapi.controller.request.HistoryRequest;
 import ru.s21school.calculatorapi.controller.responce.*;
-import ru.s21school.calculatorapi.dto.HistoryDto;
-import ru.s21school.calculatorapi.model.graphModel.GraphData;
+import ru.s21school.calculatorapi.service.model.graphModel.GraphData;
 import ru.s21school.calculatorapi.service.GraphService;
-
-import java.util.List;
 
 @Slf4j
 @CrossOrigin
@@ -20,14 +16,13 @@ import java.util.List;
 @RequestMapping("/calculator/api/v1")
 @RequiredArgsConstructor
 public class CalculatorRestController {
-    private final CalculatorService calculatorService;
-    private final GraphService graphService;
+    private final CalculatorService calculatorServiceImpl;
+    private final GraphService graphServiceImpl;
 
-    @PostMapping
+    @PostMapping("/calculate")
     public CalculatorResponse calculate(@RequestBody CalculatorRequest request) {
         log.info("Expression: {}", request.getExpression());
-        log.info("User UUID: {}", request.getUserUUID());
-        double result = calculatorService.calculate(request.getExpression(), request.getUserUUID());
+        double result = calculatorServiceImpl.calculate(request.getExpression());
         log.info("Result: {}", result);
         return CalculatorResponse.builder()
                 .expression(request.getExpression())
@@ -39,30 +34,12 @@ public class CalculatorRestController {
     @PostMapping("/graph")
     public GraphResponse calculateGraphCoordinates(@RequestBody GraphRequest request) {
         log.info("Graph: minX: {}, maxX: {}, expression: {}", request.getMinX(), request.getMaxX(), request.getExpression());
-        GraphData graphData = graphService.calculateCoordinates(request.getMinX(), request.getMaxX(), request.getExpression());
+        GraphData graphData = graphServiceImpl.calculateCoordinates(request.getMinX(), request.getMaxX(), request.getExpression());
         return GraphResponse.builder()
                 .status(Status.OK)
-                .xvalues(graphData.getXvalues())
-                .yvalues(graphData.getYvalues())
+                .xValues(graphData.getXValues())
+                .yValues(graphData.getYValues())
                 .build();
-    }
-
-    @PostMapping("/history")
-    public HistoryResponse findUserHistory(@RequestBody HistoryRequest request) {
-        log.info("/history. User UUID: {}", request.getUserUUID());
-        List<HistoryDto> userHistory = calculatorService.findUserHistory(request.getUserUUID());
-        log.info("/history. Size of history: {}", userHistory.size());
-        HistoryResponse historyResponse = new HistoryResponse();
-        userHistory.stream().map(HistoryDto::getExpression).forEach(historyResponse::addToHistory);
-        historyResponse.setStatus(Status.OK);
-        return historyResponse;
-    }
-
-    @PostMapping("/history/clear")
-    public HistoryResponse deleteUserHistory(@RequestBody HistoryRequest request) {
-        log.info("/history/clear. User UUID: {}", request.getUserUUID());
-        calculatorService.deleteUserHistory(request.getUserUUID());
-        return HistoryResponse.builder().status(Status.OK).build();
     }
 
     @ExceptionHandler(Exception.class)

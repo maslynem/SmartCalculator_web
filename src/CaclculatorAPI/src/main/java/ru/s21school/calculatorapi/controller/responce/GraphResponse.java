@@ -11,6 +11,6 @@ import java.util.List;
 @Builder
 public class GraphResponse {
     private Status status;
-    private List<Double> xvalues;
-    private List<Double> yvalues;
+    private List<Double> xValues;
+    private List<Double> yValues;
 }
