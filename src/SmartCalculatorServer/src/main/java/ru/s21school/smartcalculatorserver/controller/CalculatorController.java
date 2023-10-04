@@ -40,15 +40,15 @@ public class CalculatorController {
     @GetMapping("/history/{UUID}")
     public HistoryResponse findUserHistory(@PathVariable String UUID) {
         log.info("/history. User UUID: {}", UUID);
-        HistoryResponse historyResponse = restTemplate.getForObject(GRAPH_URL + UUID, HistoryResponse.class);
+        HistoryResponse historyResponse = restTemplate.getForObject(HISTORY_URL + UUID, HistoryResponse.class);
         log.info("/history. Size of history: {}", historyResponse.getHistory().size());
         return historyResponse;
     }
 
     @DeleteMapping("/history/{UUID}")
-    public HistoryResponse deleteUserHistory(@PathVariable String UUID) {
+    public void deleteUserHistory(@PathVariable String UUID) {
         log.info("/history/clear. User UUID: {}", UUID);
-        return restTemplate.getForObject(GRAPH_URL + UUID, HistoryResponse.class);
+        restTemplate.delete(HISTORY_URL + UUID);
     }
 
     @PostMapping("/graph")

@@ -1,4 +1,4 @@
-const postData = async (url, data = {}) => {
+const postRequest = async (url, data = {}) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -7,6 +7,25 @@ const postData = async (url, data = {}) => {
         body: JSON.stringify(data)
     });
     return await response.json();
+}
+
+const getRequest = async (url = {}) => {
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    return await response.json();
+}
+
+const deleteRequest = async (url = {}) => {
+    await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
 }
 
 function generateUUID() { // Public Domain/MIT

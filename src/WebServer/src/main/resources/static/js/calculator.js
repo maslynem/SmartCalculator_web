@@ -1,9 +1,9 @@
-const calculateUrl = "http://localhost:9090/calculator/api/v1"
-const historyUrl = "http://localhost:9090/calculator/api/v1/history"
+const calculateUrl = "http://localhost:8081/api/v1/calculator/"
+const historyUrl = "http://localhost:8081/api/v1/calculator/history/"
 
 let calc_sess = getCookie();
 
-postData(historyUrl, {userUUID: calc_sess}).then((data) => {
+getRequest(historyUrl + calc_sess).then((data) => {
         if (data.status === "OK") {
             for (let i = 0; i < data.history.length; i++) {
                 addExpressionToTable(data.history[i]);
@@ -48,7 +48,7 @@ btns.forEach(btn => {
                 expression: input.value
             }
             addExpressionToTable(input.value);
-            postData(calculateUrl, data).then((data) => {
+            postRequest(calculateUrl, data).then((data) => {
                     if (data.status === 'OK') {
                         input.value = data.result;
                     } else {
@@ -65,13 +65,8 @@ btns.forEach(btn => {
 });
 
 document.getElementById("clearHistoryBtn").addEventListener("click", function () {
-    console.log(historyUrl + "/clear");
-    postData(historyUrl + "/clear", {userUUID: calc_sess}).then((data) => {
-            if (data.status === "OK") {
-                location.reload();
-            }
-        }
-    );
+    console.log(historyUrl + calc_sess);
+    deleteRequest(historyUrl + calc_sess).then(() => location.reload());
 });
 
 

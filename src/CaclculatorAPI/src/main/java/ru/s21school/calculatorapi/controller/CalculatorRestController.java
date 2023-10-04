@@ -35,6 +35,7 @@ public class CalculatorRestController {
     public GraphResponse calculateGraphCoordinates(@RequestBody GraphRequest request) {
         log.info("Graph: minX: {}, maxX: {}, expression: {}", request.getMinX(), request.getMaxX(), request.getExpression());
         GraphData graphData = graphServiceImpl.calculateCoordinates(request.getMinX(), request.getMaxX(), request.getExpression());
+        log.info("Graph calculate coordinates successfully");
         return GraphResponse.builder()
                 .status(Status.OK)
                 .xValues(graphData.getXValues())

@@ -1,4 +1,4 @@
-const graphUrl = "http://localhost:9090/calculator/api/v1/graph"
+const graphUrl = "http://localhost:8081/api/v1/calculator/graph"
 
 let expression = document.getElementById("expression");
 const ctx = document.getElementById('myChart');
@@ -16,8 +16,9 @@ document.getElementById("calculateGraph").addEventListener("click", function () 
             maxX: maxX,
             expression: expression.value
         }
-        postData(graphUrl, data).then((data) => {
+        postRequest(graphUrl, data).then((data) => {
                 if (data.status === "OK") {
+                    console.log(data);
                     printGraph(minX, maxX, minY, maxY, data.xvalues, data.yvalues);
                 } else {
                     alert(data.message);

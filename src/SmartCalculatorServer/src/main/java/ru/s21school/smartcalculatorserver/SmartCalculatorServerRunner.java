@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class SmartCalculatorServerApplication {
+public class SmartCalculatorServerRunner {
 
     @Bean
     @LoadBalanced
@@ -17,7 +17,7 @@ public class SmartCalculatorServerApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SmartCalculatorServerApplication.class, args);
+        SpringApplication.run(SmartCalculatorServerRunner.class, args);
     }
 
 }

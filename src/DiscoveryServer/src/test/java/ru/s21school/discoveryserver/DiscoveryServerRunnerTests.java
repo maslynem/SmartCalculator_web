@@ -1,10 +1,10 @@
-package ru.s21school.usershistory;
+package ru.s21school.discoveryserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UsersHistoryApplicationTests {
+class DiscoveryServerRunnerTests {
 
     @Test
     void contextLoads() {

@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 @SpringBootApplication
-public class ApplicationRunner {
+public class WebServerRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApplicationRunner.class, args);
+		SpringApplication.run(WebServerRunner.class, args);
 	}
 
 }

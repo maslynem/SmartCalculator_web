@@ -1,12 +1,13 @@
-package ru.s21school.calculatorapi;
+package ru.s21school.usershistory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CalculatorApiApplication {
+public class UsersHistoryServerRunner {
+
     public static void main(String[] args) {
-        SpringApplication.run(CalculatorApiApplication.class, args);
+        SpringApplication.run(UsersHistoryServerRunner.class, args);
     }
 
 }

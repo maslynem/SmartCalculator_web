@@ -39,10 +39,9 @@ public class UserHistoryController {
     }
 
     @DeleteMapping("/{userUUID}")
-    public HistoryResponse deleteUserHistory(@PathVariable String userUUID) {
+    public void deleteUserHistory(@PathVariable String userUUID) {
         log.info("/history/clear. User UUID: {}", userUUID);
         historyService.deleteUserHistory(userUUID);
-        return HistoryResponse.builder().status(Status.OK).build();
     }
 
 }
