@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>ru.s21school</groupId>
-    <artifactId>UsersHistory</artifactId>
+    <artifactId>UserHistoryServer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>UserHistory</name>
-    <description>UserHistory</description>
+    <name>UserHistoryServer</name>
+    <description>UserHistoryServer</description>
 
     <properties>
         <java.version>11</java.version>

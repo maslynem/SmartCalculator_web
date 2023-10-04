@@ -1,0 +1,81 @@
+version: '2.4'
+
+services:
+  discovery-service:
+    build: ./DiscoveryServer
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    environment:
+      SERVER_PORT: 8080
+    ports:
+      - '8761:8080'
+
+  web-server:
+    build: ./WebServer
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      smart-calculator:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  smart-calculator:
+    build: ./SmartCalculatorServer
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      user-history:
+        condition: service_healthy
+      calculator-api:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    environment:
+        SERVER_PORT: 8080
+    ports:
+      - '9090:8080'
+
+  calculator-api:
+    build: CalculatorAPI
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    environment:
+      SERVER_PORT: 8080
+
+  user-history:
+    build: ./UserHistoryServer
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+      postgres:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    environment:
+      - URL_DB=jdbc:postgresql://postgres:5432/postgres
+
+  postgres:
+    image: postgres:15.0
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres

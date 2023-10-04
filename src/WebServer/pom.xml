@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.s21school</groupId>
-	<artifactId>SmartCalculatorAPI</artifactId>
+	<artifactId>WebServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>WebServer</name>
 	<description>WebServer</description>
