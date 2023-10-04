@@ -13,8 +13,8 @@
     <groupId>ru.s21school</groupId>
     <artifactId>UsersHistory</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>UsersHistory</name>
-    <description>UsersHistory</description>
+    <name>UserHistory</name>
+    <description>UserHistory</description>
 
     <properties>
         <java.version>11</java.version>
