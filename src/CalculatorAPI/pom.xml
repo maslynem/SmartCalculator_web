@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>ru.s21school</groupId>
-    <artifactId>CaclculatorAPI</artifactId>
+    <artifactId>CalculatorAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>CalculatorAPI</name>
     <description>CalculatorAPI</description>

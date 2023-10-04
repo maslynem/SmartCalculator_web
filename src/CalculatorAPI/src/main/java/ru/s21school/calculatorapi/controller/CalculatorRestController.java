@@ -11,7 +11,6 @@ import ru.s21school.calculatorapi.service.model.graphModel.GraphData;
 import ru.s21school.calculatorapi.service.GraphService;
 
 @Slf4j
-@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor

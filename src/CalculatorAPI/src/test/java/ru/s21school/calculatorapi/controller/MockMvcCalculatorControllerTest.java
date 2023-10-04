@@ -27,7 +27,7 @@ class MockMvcCalculatorControllerTest {
         String expression = "1.54837495+1.34521343";
         ObjectMapper mapper = new ObjectMapper();
         String requestJson = mapper.writeValueAsString(new ExpressionRequest(expression));
-        mockMvc.perform(post("/calculator/api/v1/calculate/")
+        mockMvc.perform(post("/api/v1/calculate/")
                         .contentType(APPLICATION_JSON)
                         .content(requestJson))
                 .andExpect(status().isOk())
@@ -40,7 +40,7 @@ class MockMvcCalculatorControllerTest {
     void Calculate_WrongInput_WrongExpressionException(String expression) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         String requestJson = mapper.writeValueAsString(new ExpressionRequest(expression));
-        mockMvc.perform(post("/calculator/api/v1/calculate/")
+        mockMvc.perform(post("/api/v1/calculate/")
                         .contentType(APPLICATION_JSON)
                         .content(requestJson))
                 .andExpect(status().isOk())
