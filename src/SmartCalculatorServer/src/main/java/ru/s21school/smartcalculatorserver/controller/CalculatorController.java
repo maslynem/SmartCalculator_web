@@ -4,13 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import ru.s21school.smartcalculatorserver.controller.request.CalculatorRequest;
-import ru.s21school.smartcalculatorserver.controller.request.ExpressionRequest;
-import ru.s21school.smartcalculatorserver.controller.request.GraphRequest;
-import ru.s21school.smartcalculatorserver.controller.request.HistoryRequest;
-import ru.s21school.smartcalculatorserver.controller.responce.CalculatorResponse;
-import ru.s21school.smartcalculatorserver.controller.responce.GraphResponse;
-import ru.s21school.smartcalculatorserver.controller.responce.HistoryResponse;
+import ru.s21school.smartcalculatorserver.controller.request.*;
+import ru.s21school.smartcalculatorserver.controller.responce.*;
 
 @Slf4j
 @RestController
@@ -24,6 +19,7 @@ public class CalculatorController {
     private static final String CALCULATOR_URL = "http://calculator/api/v1/calculate/";
     private static final String GRAPH_URL = "http://calculator/api/v1/graph/";
     private static final String HISTORY_URL = "http://history/api/v1/history/";
+    private static final String CREDIT_URL = "http://credit-calculator//api/v1/credit-calculator/";
 
     @PostMapping
     public CalculatorResponse calculate(@RequestBody CalculatorRequest request) {
@@ -55,6 +51,16 @@ public class CalculatorController {
     public GraphResponse calculateGraphCoordinates(@RequestBody GraphRequest request) {
         log.info("Graph: minX: {}, maxX: {}, expression: {}", request.getMinX(), request.getMaxX(), request.getExpression());
         return restTemplate.postForObject(GRAPH_URL, request, GraphResponse.class);
+    }
+
+    @PostMapping("/credit/ann")
+    public AnnuityCreditResponse calculateAnnuityCredit(@RequestBody CreditRequest creditRequest) {
+        return restTemplate.postForObject(CREDIT_URL + "ann", creditRequest, AnnuityCreditResponse.class);
+    }
+
+    @PostMapping("/credit/diff")
+    public DifferentiatedCreditResponse calculateDifferentiatedCredit(@RequestBody CreditRequest creditRequest) {
+        return restTemplate.postForObject(CREDIT_URL + "diff", creditRequest, DifferentiatedCreditResponse.class);
     }
 
 }

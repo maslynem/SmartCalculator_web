@@ -14,5 +14,4 @@ public class CreditInputData {
     private Double creditTerm;
     private Integer termCoefficient;
     private Double interestRate;
-    private CreditType creditType;
 }
