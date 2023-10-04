@@ -11,8 +11,8 @@
 	<groupId>ru.s21school</groupId>
 	<artifactId>SmartCalculatorAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SmartCalculatorWebServer</name>
-	<description>SmartCalculatorWebServer</description>
+	<name>WebServer</name>
+	<description>WebServer</description>
 	<properties>
 		<java.version>15</java.version>
 	</properties>
