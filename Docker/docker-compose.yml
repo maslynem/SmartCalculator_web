@@ -1,13 +1,13 @@
 version: '2.4'
 
 services:
-  discovery-service:
+  discovery-server:
     build: ./DiscoveryServer
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-      interval: 30s
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 15
     environment:
       SERVER_PORT: 8080
     ports:
@@ -16,66 +16,78 @@ services:
   web-server:
     build: ./WebServer
     depends_on:
-      discovery-service:
+      discovery-server:
         condition: service_healthy
       smart-calculator:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
-      interval: 30s
+      test: [ "CMD", "curl", "-f", "http://localhost:9090/actuator/health" ]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 15
+    environment:
+      SERVER_PORT: 9090
+    ports:
+      - '8080:9090'
 
   smart-calculator:
     build: ./SmartCalculatorServer
     depends_on:
-      discovery-service:
+      discovery-server:
         condition: service_healthy
       user-history:
         condition: service_healthy
       calculator-api:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
-      interval: 30s
+      test: [ "CMD", "curl", "-f", "http://localhost:8081/actuator/health" ]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 15
     environment:
-        SERVER_PORT: 8080
+      SERVER_PORT: 8081
+      DISCOVERY_URL: http://discovery-server:8080/eureka/
     ports:
-      - '9090:8080'
+      - '8081:8081'
 
   calculator-api:
     build: CalculatorAPI
     depends_on:
-      discovery-service:
+      discovery-server:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
-      interval: 30s
+      test: [ "CMD", "curl", "-f", "http://localhost:8082/actuator/health" ]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 15
     environment:
-      SERVER_PORT: 8080
+      SERVER_PORT: 8082
+      DISCOVERY_URL: http://discovery-server:8080/eureka/
 
   user-history:
     build: ./UserHistoryServer
     depends_on:
-      discovery-service:
+      discovery-server:
         condition: service_healthy
       postgres:
-        condition: service_completed_successfully
+        condition: service_healthy
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
-      interval: 30s
+      test: [ "CMD", "curl", "-f", "http://localhost:8083/actuator/health" ]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 15
     environment:
-      - URL_DB=jdbc:postgresql://postgres:5432/postgres
+      SERVER_PORT: 8083
+      URL_DB: jdbc:postgresql://postgres:5432/postgres
+      DISCOVERY_URL: http://discovery-server:8080/eureka/
 
   postgres:
     image: postgres:15.0
-    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres

@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="FacetManager">
-    <facet type="web" name="Web">
-      <configuration>
-        <webroots />
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/../UserHistory/src/main/java" />
-          <root url="file://$MODULE_DIR$/../UserHistory/src/main/resources" />
-        </sourceRoots>
-      </configuration>
-    </facet>
-    <facet type="jpa" name="JPA">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
-        <naming-strategy-map />
-      </configuration>
-    </facet>
-    <facet type="Spring" name="Spring">
-      <configuration />
-    </facet>
-  </component>
   <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="019acfd5-17c9-42e8-b7f2-ef8c0e186846" />
+    <option name="uniqueId" value="794aa185-ea57-47d9-a8f2-8cf47806998c" />
   </component>
 </module>

@@ -1,5 +1,10 @@
-server.port: 9090
+server.port: ${SERVER_PORT:9090}
 
 spring:
   application:
     name: calculator
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761/eureka}

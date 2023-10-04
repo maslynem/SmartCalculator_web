@@ -102,13 +102,32 @@ class FromInfixToPostfixTransformer {
     }
 
     private static int getOperatorPriority(String operator) {
-        return switch (operator) {
-            case "+", "-" -> 1;
-            case "*", "/", "%" -> 2;
-            case "^" -> 3;
-            case "tan", "sqrt", "sin", "mod", "log", "ln", "ctg", "cos", "atan", "asin", "acos" -> 4;
-            case "~" -> 5;
-            default -> -1;
-        };
+        switch (operator) {
+            case "+":
+            case "-":
+                return 1;
+            case "*":
+            case "/":
+            case "%":
+                return 2;
+            case "^":
+                return 3;
+            case "acos":
+            case "asin":
+            case "atan":
+            case "cos":
+            case "ctg":
+            case "ln":
+            case "log":
+            case "mod":
+            case "sin":
+            case "sqrt":
+            case "tan":
+                return 4;
+            case "~":
+                return 5;
+            default:
+                return -1;
+        }
     }
 }

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker rmi discovery-service web-server smart-calculator calculator-api user-history postgres:15.0
+docker rmi docker_web-server docker_smart-calculator docker_user-history docker_calculator-api docker_discovery-server

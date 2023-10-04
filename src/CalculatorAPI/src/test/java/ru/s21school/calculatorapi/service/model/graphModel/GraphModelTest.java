@@ -1,16 +1,14 @@
 package ru.s21school.calculatorapi.service.model.graphModel;
 
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.s21school.calculatorapi.service.model.graphModel.GraphData;
-import ru.s21school.calculatorapi.service.model.graphModel.GraphModel;
 
 @SpringBootTest
-@RequiredArgsConstructor
 class GraphModelTest {
-    private final GraphModel graphModel;
+    @Autowired
+    private GraphModel graphModel;
 
     @Test
     void GraphModel_GetGraphDataFromSinX_SizeShouldBe10000() {
