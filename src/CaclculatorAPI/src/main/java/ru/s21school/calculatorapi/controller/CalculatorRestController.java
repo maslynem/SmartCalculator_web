@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.s21school.calculatorapi.service.CalculatorService;
-import ru.s21school.calculatorapi.controller.request.CalculatorRequest;
+import ru.s21school.calculatorapi.controller.request.ExpressionRequest;
 import ru.s21school.calculatorapi.controller.request.GraphRequest;
 import ru.s21school.calculatorapi.controller.responce.*;
 import ru.s21school.calculatorapi.service.model.graphModel.GraphData;
@@ -13,14 +13,14 @@ import ru.s21school.calculatorapi.service.GraphService;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping("/calculator/api/v1")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CalculatorRestController {
     private final CalculatorService calculatorServiceImpl;
     private final GraphService graphServiceImpl;
 
     @PostMapping("/calculate")
-    public CalculatorResponse calculate(@RequestBody CalculatorRequest request) {
+    public CalculatorResponse calculate(@RequestBody ExpressionRequest request) {
         log.info("Expression: {}", request.getExpression());
         double result = calculatorServiceImpl.calculate(request.getExpression());
         log.info("Result: {}", result);
