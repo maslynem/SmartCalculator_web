@@ -1,11 +1,3 @@
-.btnMenu {
-    font-size: 20px;
-}
-
-.btnMenu:hover {
-    background-color: rgb(214, 214, 214);
-    cursor: pointer;
-}
 
 .menuBtn {
     padding: 0;
