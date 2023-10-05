@@ -19,7 +19,7 @@ public class CalculatorController {
     private static final String CALCULATOR_URL = "http://calculator/api/v1/calculate/";
     private static final String GRAPH_URL = "http://calculator/api/v1/graph/";
     private static final String HISTORY_URL = "http://history/api/v1/history/";
-    private static final String CREDIT_URL = "http://credit-calculator//api/v1/credit-calculator/";
+    private static final String CREDIT_URL = "http://credit-calculator/api/v1/credit-calculator/";
 
     @PostMapping
     public CalculatorResponse calculate(@RequestBody CalculatorRequest request) {
@@ -55,11 +55,15 @@ public class CalculatorController {
 
     @PostMapping("/credit/ann")
     public AnnuityCreditResponse calculateAnnuityCredit(@RequestBody CreditRequest creditRequest) {
+        log.info("POST /credit/ann");
+        log.info("Credit Input Data: {}", creditRequest);
         return restTemplate.postForObject(CREDIT_URL + "ann", creditRequest, AnnuityCreditResponse.class);
     }
 
     @PostMapping("/credit/diff")
     public DifferentiatedCreditResponse calculateDifferentiatedCredit(@RequestBody CreditRequest creditRequest) {
+        log.info("POST /credit/diff");
+        log.info("Credit Input Data: {}", creditRequest);
         return restTemplate.postForObject(CREDIT_URL + "diff", creditRequest, DifferentiatedCreditResponse.class);
     }
 

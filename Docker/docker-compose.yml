@@ -64,6 +64,20 @@ services:
       SERVER_PORT: 8082
       DISCOVERY_URL: http://discovery-server:8080/eureka/
 
+  credit-calculator-api:
+    build: CreditCalculatorAPI
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8084/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    environment:
+      SERVER_PORT: 8084
+      DISCOVERY_URL: http://discovery-server:8080/eureka/
+
   user-history:
     build: ./UserHistoryServer
     depends_on:

@@ -65,7 +65,6 @@ btns.forEach(btn => {
 });
 
 document.getElementById("clearHistoryBtn").addEventListener("click", function () {
-    console.log(historyUrl + calc_sess);
     deleteRequest(historyUrl + calc_sess).then(() => location.reload());
 });
 

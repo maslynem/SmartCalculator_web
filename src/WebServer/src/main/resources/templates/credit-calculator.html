@@ -25,154 +25,137 @@
         </div>
     </div>
 
-    <form action="#" th:action="@{/credit-calculator}" th:object="${creditData}" method="post">
-        <div class="form-group row mt-4">
-            <div class="col-4">
-                Сумма кредита
+    <div class="form-group row mt-4">
+        <div class="col-4">
+            Сумма кредита
+        </div>
+        <div class="col-5">
+            <input type="number" class="form-control text-center" id="creditSum">
+        </div>
+        <div class="col-3">
+            <span>₽</span>
+        </div>
+    </div>
+
+    <div class="form-group row mt-4">
+        <div class="col-4">
+            Срок кредита
+        </div>
+        <div class="col-5">
+            <input type="number" class="form-control text-center" id="creditTerm">
+        </div>
+        <div class="col-3">
+            <select class="form-select" id="termCoefficient" name="termCoefficient" aria-label="">
+                <option selected value="12" th:text="Лет"></option>
+                <option value="1" th:text="Mec."></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row mt-4">
+        <div class="col-4">
+            Процентная ставка
+        </div>
+        <div class="col-5">
+            <input type="number" step="0.01" class="form-control text-center" id="interestRate">
+        </div>
+        <div class="col-3">
+            <span>%</span>
+        </div>
+    </div>
+
+    <div class="form-group row mt-4">
+        <div class="col-4">
+            Тип ежемесячных платежей
+        </div>
+        <div class="col-5">
+            <div class="form-check">
+                <input type="radio" value="ann" name="creditType" id="annuityCredit" checked="checked">
+                <label class="form-check-label" for="annuityCredit">
+                    Аннуитетный
+                </label>
             </div>
-            <div class="col-5">
-                <input type="number" class="form-control text-center" id="creditSum"
-                       aria-label="creditSum" th:field="*{creditSum}" aria-describedby="creditSumError">
-            </div>
-            <div class="col-3">
-                <span>₽</span>
+            <div class="form-check">
+                <input type="radio" value="diff" name="creditType"
+                       id="differentiatedCredit">
+                <label for="differentiatedCredit">
+                    Дифференцированный
+                </label>
             </div>
         </div>
+    </div>
 
-        <small class="error_message" id="creditSumError"
-               th:if="${#fields.hasErrors('creditSum')}" th:errors="*{creditSum}">error creditSum</small>
-
-        <div class="form-group row mt-4">
-            <div class="col-4">
-                Срок кредита
-            </div>
-            <div class="col-5">
-                <input type="number" class="form-control text-center" id="creditTerm"
-                       aria-label="creditSum" th:field="*{creditTerm}" aria-describedby="creditTermError">
-            </div>
-            <div class="col-3">
-                <select class="form-select" name="termCoefficient" aria-label="">
-                    <option selected value="12" th:text="Лет"></option>
-                    <option value="1" th:text="Mec."></option>
-                </select>
-            </div>
+    <div class="row justify-content-md-center">
+        <div class="col-2 pt-4">
+            <button class="btn btn-sm btn-outline-secondary" id="calculateCredit">Рассчитать</button>
         </div>
-        <small class="error_message" id="creditTermError"
-               th:if="${#fields.hasErrors('creditTerm')}" th:errors="*{creditTerm}">error creditTerm</small>
-
-        <div class="form-group row mt-4">
-            <div class="col-4">
-                Процентная ставка
-            </div>
-            <div class="col-5">
-                <input type="number" step="0.01" class="form-control text-center" id="interestRate"
-                       aria-label="interestRate" th:field="*{interestRate}" aria-describedby="interestRateError">
-            </div>
-            <div class="col-3">
-                <span>%</span>
-            </div>
-        </div>
-        <small class="error_message" id="interestRateError"
-               th:if="${#fields.hasErrors('interestRate')}" th:errors="*{interestRate}">error interestRate</small>
-
-        <div class="form-group row mt-4">
-            <div class="col-4">
-                Тип ежемесячных платежей
-            </div>
-            <div class="col-5">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{creditType}" value="ANNUITY" name="annuity" id="annuityCredit">
-                    <label class="form-check-label" for="annuityCredit">
-                        Аннуитетный
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{creditType}" value="DIFFERENTIATED" name="annuity" id="differentiatedCredit">
-                    <label class="form-check-label" for="differentiatedCredit">
-                        Дифференцированный
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-md-center">
-            <div class="col-2 pt-4">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Рассчитать</button>
-            </div>
-        </div>
-    </form>
+    </div>
 
 </div>
 
-<th:block th:if="${annuityCredit} != null">
-    <div class="container annuity-form">
-        <div class="row mt-4">
-            <div class="col-4">
-                Ежемесячный платеж
-            </div>
-            <div class="col-4" th:text="*{annuityCredit.getMonthPay()}"></div>
+<div class="container annuity-form" id="annuityCreditResult" style="display: none">
+    <div class="row mt-4">
+        <div class="col-4">
+            Ежемесячный платеж
         </div>
-        <div class="row mt-5">
-            <div class="col-4">
-                Начисленные проценты
-            </div>
-            <div class="col-4" th:text="*{annuityCredit.getDebt()}"></div>
+        <div class="col-4" id="monthPay"></div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-4">
+            Начисленные проценты
         </div>
-        <div class="row mt-5">
-            <div class="col-4">
-                Долг + проценты
-            </div>
-            <div class="col-4" th:text="*{annuityCredit.getAllSum()}"></div>
+        <div class="col-4" id="debt"></div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-4">
+            Долг + проценты
+        </div>
+        <div class="col-4" id="allSum"></div>
+    </div>
+</div>
+
+<div class="container differentiated-form" id="differentiatedCreditResult" style="display: none">
+    <div class="row mt-4">
+        <div class="col-4">
+            Ежемесячный платеж
+        </div>
+        <div class="col-4">
+            <span id ="diffMonthPayFirst"></span>
+            <span> ... </span>
+            <span id ="diffMonthPayLast"></span>
         </div>
     </div>
-</th:block>
-
-<th:block th:if="${differentiatedCredit} != null">
-    <div class="container differentiated-form">
-        <div class="row mt-4">
-            <div class="col-4">
-                Ежемесячный платеж
-            </div>
-            <div class="col-4">
-                <span th:text = "*{differentiatedCredit.getMonthPay().get(0)}"></span>
-                <span> ... </span>
-                <span th:text = "*{differentiatedCredit.getMonthPay().get(differentiatedCredit.getMonthPay().size() - 1)}"></span>
-            </div>
+    <div class="row mt-5">
+        <div class="col-4">
+            Начисленные проценты
         </div>
-        <div class="row mt-5">
-            <div class="col-4">
-                Начисленные проценты
-            </div>
-            <div class="col-4" th:text="*{differentiatedCredit.getDebt()}"></div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-4">
-                Долг + проценты
-            </div>
-            <div class="col-4" th:text="*{differentiatedCredit.getAllSum()}"></div>
-        </div>
-
-        <table class="table table-bordered table-striped table-href">
-            <caption></caption>
-            <thead class="table-dark">
-            <tr>
-                <th class="text-center">
-                    №
-                </th>
-                <th class="text-center">
-                    Сумма платежа, ₽
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="entity,iter : ${differentiatedCredit.getMonthPay()}">
-                <td th:text="${iter.index + 1}"/>
-                <td th:text="${entity}"/>
-            </tr>
-            </tbody>
-        </table>
+        <div class="col-4" id="diffDebt"></div>
     </div>
-</th:block>
+    <div class="row mt-5">
+        <div class="col-4">
+            Долг + проценты
+        </div>
+        <div class="col-4" id="diffAllSum"></div>
+    </div>
 
+    <table class="table table-bordered table-striped table-href">
+        <caption></caption>
+        <thead class="table-dark">
+        <tr>
+            <th class="text-center">
+                №
+            </th>
+            <th class="text-center">
+                Сумма платежа, ₽
+            </th>
+        </tr>
+        </thead>
+        <tbody id ="tbd">
+        </tbody>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/utils.js"></script>
+<script type="text/javascript" src="/js/credit-calc.js"></script>
 </body>
 </html>

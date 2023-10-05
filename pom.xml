@@ -16,6 +16,7 @@
         <module>src/SmartCalculatorServer</module>
         <module>src/UserHistoryServer</module>
         <module>src/WebServer</module>
+        <module>src/CreditCalculatorAPI</module>
     </modules>
 
     <parent>
