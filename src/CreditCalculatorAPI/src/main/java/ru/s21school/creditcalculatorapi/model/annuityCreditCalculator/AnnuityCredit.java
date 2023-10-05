@@ -1,4 +1,4 @@
-package ru.s21school.creditcalculatorapi.model.creditCalculator;
+package ru.s21school.creditcalculatorapi.model.annuityCreditCalculator;
 
 import lombok.Value;
 

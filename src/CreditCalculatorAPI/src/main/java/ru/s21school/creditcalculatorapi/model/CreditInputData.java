@@ -1,4 +1,4 @@
-package ru.s21school.creditcalculatorapi.model.creditCalculator;
+package ru.s21school.creditcalculatorapi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CreditInputData {
-    private Double creditSum;
-    private Double creditTerm;
+    private Integer creditSum;
+    private Integer creditTerm;
     private Integer termCoefficient;
     private Double interestRate;
 }
