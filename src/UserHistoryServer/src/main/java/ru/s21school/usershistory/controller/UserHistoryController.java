@@ -23,7 +23,7 @@ public class UserHistoryController {
     public void addUserExpression(@PathVariable String userUUID,
                                   @RequestBody HistoryRequest request) {
         log.info("POST /history/{}", userUUID);
-        historyService.addUserHistory(userUUID, request.getExpression(), request.getResult());
+        historyService.addUserHistory(userUUID, request.getExpression());
         log.info("POST /history/{userUUID} successful");
     }
 

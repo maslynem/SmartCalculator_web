@@ -24,7 +24,4 @@ public class History {
     @Column(name = "expression")
     private String expression;
 
-    @Column(name = "result")
-    private Double result;
-
 }

@@ -11,5 +11,4 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HistoryRequest {
     private String expression;
-    private Double result;
 }

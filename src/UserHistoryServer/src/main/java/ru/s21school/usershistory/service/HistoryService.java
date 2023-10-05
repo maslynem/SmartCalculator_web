@@ -13,8 +13,6 @@ import ru.s21school.usershistory.repository.UserRepository;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,13 +38,12 @@ public class HistoryService {
     }
 
     @Transactional
-    public void addUserHistory(String userUUID, String expression, Double result) {
+    public void addUserHistory(String userUUID, String expression) {
         User user = userRepository.findByUuid(userUUID)
                 .orElse(User.builder().uuid(userUUID).build());
         History history = History.builder()
                 .user(user)
                 .expression(expression)
-                .result(result)
                 .build();
         user.getHistories().add(history);
         userRepository.saveAndFlush(user);

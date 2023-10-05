@@ -1,11 +1,12 @@
 package ru.s21school.smartcalculatorserver.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import ru.s21school.smartcalculatorserver.controller.request.*;
-import ru.s21school.smartcalculatorserver.controller.responce.*;
 
 @Slf4j
 @RestController
@@ -22,49 +23,57 @@ public class CalculatorController {
     private static final String CREDIT_URL = "http://credit-calculator/api/v1/credit-calculator/";
 
     @PostMapping
-    public CalculatorResponse calculate(@RequestBody CalculatorRequest request) {
+    public ResponseEntity<Object> calculate(@RequestBody CalculatorRequest request) {
         log.info("Expression: {}", request.getExpression());
         log.info("User UUID: {}", request.getUserUUID());
-
-        CalculatorResponse calculatorResponse = restTemplate.postForObject(CALCULATOR_URL, new ExpressionRequest(request.getExpression()), CalculatorResponse.class);
-        restTemplate.postForLocation(HISTORY_URL + request.getUserUUID(), new HistoryRequest(request.getExpression(), calculatorResponse.getResult()));
-
-        log.info("Result: {}", calculatorResponse.getResult());
+        ResponseEntity<Object> calculatorResponse = restTemplate.postForEntity(CALCULATOR_URL, new ExpressionRequest(request.getExpression()), Object.class);
+        try {
+            restTemplate.postForLocation(HISTORY_URL + request.getUserUUID(), new HistoryRequest(request.getExpression()));
+        } catch (Exception e) {
+            log.error("Can't save history for user UUID: {}, error response:: {}", request.getUserUUID(), ExceptionUtils.getRootCauseMessage(e));
+        }
+        log.info("Result: {}", calculatorResponse.getBody());
         return calculatorResponse;
     }
 
     @GetMapping("/history/{UUID}")
-    public HistoryResponse findUserHistory(@PathVariable String UUID) {
+    public ResponseEntity<Object> findUserHistory(@PathVariable String UUID) {
         log.info("/history. User UUID: {}", UUID);
-        HistoryResponse historyResponse = restTemplate.getForObject(HISTORY_URL + UUID, HistoryResponse.class);
-        log.info("/history. Size of history: {}", historyResponse.getHistory().size());
-        return historyResponse;
+        try {
+            return restTemplate.getForEntity(HISTORY_URL + UUID, Object.class);
+        } catch (Exception e) {
+            log.error("Can't get history for user UUID: {}, error response:: {}", UUID, ExceptionUtils.getRootCauseMessage(e));
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @DeleteMapping("/history/{UUID}")
     public void deleteUserHistory(@PathVariable String UUID) {
         log.info("/history/clear. User UUID: {}", UUID);
-        restTemplate.delete(HISTORY_URL + UUID);
+        try {
+            restTemplate.delete(HISTORY_URL + UUID);
+        } catch (Exception e) {
+            log.error("Can't delete history for user UUID: {}, error response:: {}", UUID, ExceptionUtils.getRootCauseMessage(e));
+        }
     }
 
     @PostMapping("/graph")
-    public GraphResponse calculateGraphCoordinates(@RequestBody GraphRequest request) {
+    public ResponseEntity<Object> calculateGraphCoordinates(@RequestBody GraphRequest request) {
         log.info("Graph: minX: {}, maxX: {}, expression: {}", request.getMinX(), request.getMaxX(), request.getExpression());
-        return restTemplate.postForObject(GRAPH_URL, request, GraphResponse.class);
+        return restTemplate.postForEntity(GRAPH_URL, request, Object.class);
     }
 
     @PostMapping("/credit/ann")
-    public AnnuityCreditResponse calculateAnnuityCredit(@RequestBody CreditRequest creditRequest) {
+    public ResponseEntity<Object> calculateAnnuityCredit(@RequestBody CreditRequest creditRequest) {
         log.info("POST /credit/ann");
         log.info("Credit Input Data: {}", creditRequest);
-        return restTemplate.postForObject(CREDIT_URL + "ann", creditRequest, AnnuityCreditResponse.class);
+        return restTemplate.postForEntity(CREDIT_URL + "ann", creditRequest, Object.class);
     }
 
     @PostMapping("/credit/diff")
-    public DifferentiatedCreditResponse calculateDifferentiatedCredit(@RequestBody CreditRequest creditRequest) {
+    public ResponseEntity<Object> calculateDifferentiatedCredit(@RequestBody CreditRequest creditRequest) {
         log.info("POST /credit/diff");
         log.info("Credit Input Data: {}", creditRequest);
-        return restTemplate.postForObject(CREDIT_URL + "diff", creditRequest, DifferentiatedCreditResponse.class);
+        return restTemplate.postForEntity(CREDIT_URL + "diff", creditRequest, Object.class);
     }
-
 }
