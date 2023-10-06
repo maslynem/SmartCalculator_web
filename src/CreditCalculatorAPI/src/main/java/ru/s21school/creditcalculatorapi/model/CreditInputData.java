@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CreditInputData {
-    private Integer creditSum;
-    private Integer creditTerm;
-    private Integer termCoefficient;
-    private Double interestRate;
+    private double creditSum;
+    private int creditTerm;
+    private int termCoefficient;
+    private double interestRate;
 }

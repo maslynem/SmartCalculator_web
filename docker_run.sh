@@ -1,6 +1,7 @@
 #!/bin/bash
 sh Docker/clean.sh
 rm -rf Docker/*/*.jar
+mvn -N install
 mvn clean -DskipTests package
 cp src/CalculatorAPI/target/*.jar Docker/CalculatorAPI/CalculatorApi.jar
 cp src/CreditCalculatorAPI/target/*.jar Docker/CreditCalculatorAPI/CreditCalculatorAPI.jar

@@ -1,5 +1,6 @@
 package ru.s21school.creditcalculatorapi.model.differentiatedCreditCalculator;
 
+import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Component;
 import ru.s21school.creditcalculatorapi.model.CreditInputData;
 
@@ -24,14 +25,13 @@ public class DifferentiatedCreditCalculatorImpl implements DifferentiatedCreditC
             double temp = (sum - (sum / date) * (i - 1));
             double tempMonthPay = sum / date + temp * (rate / 1200);
             allSum += tempMonthPay;
-            tempMonthPay = Math.round(tempMonthPay * 100) / 100.;
-            monthPay.add(tempMonthPay);
+            monthPay.add(Precision.round(tempMonthPay, 2));
             if (i == date) {
                 debt = allSum - sum;
             }
         }
-        debt = Math.round(debt * 100) / 100.;
-        allSum = Math.round(allSum * 100) / 100.;
+        debt = Precision.round(debt, 2);
+        allSum = Precision.round(allSum, 2);
         return new DifferentiatedCredit(allSum, debt, monthPay);
     }
 }

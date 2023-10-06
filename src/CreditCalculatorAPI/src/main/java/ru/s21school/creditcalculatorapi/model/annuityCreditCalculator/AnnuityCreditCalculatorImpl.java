@@ -1,5 +1,6 @@
 package ru.s21school.creditcalculatorapi.model.annuityCreditCalculator;
 
+import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Component;
 import ru.s21school.creditcalculatorapi.model.CreditInputData;
 
@@ -16,9 +17,9 @@ public class AnnuityCreditCalculatorImpl implements AnnuityCreditCalculator {
         }
         double i = rate / 1200;
         double monthPay = sum * ((i * Math.pow((1 + i), date)) / (Math.pow((1 + i), date) - 1));
-        monthPay = Math.round(monthPay * 100) / 100.;
-        double debt = monthPay * date - sum;
-        double allSum = monthPay * date;
+        monthPay = Precision.round(monthPay, 2);
+        double debt = Precision.round(monthPay * date - sum, 2);
+        double allSum = Precision.round(monthPay * date, 2);
         return new AnnuityCredit(allSum, debt, monthPay);
     }
 }
