@@ -3,12 +3,15 @@ package ru.s21school.calculatorapi.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.s21school.calculatorapi.service.CalculatorService;
 import ru.s21school.calculatorapi.controller.request.ExpressionRequest;
 import ru.s21school.calculatorapi.controller.request.GraphRequest;
-import ru.s21school.calculatorapi.controller.responce.*;
-import ru.s21school.calculatorapi.service.model.graphModel.GraphData;
+import ru.s21school.calculatorapi.controller.responce.CalculatorErrorResponse;
+import ru.s21school.calculatorapi.controller.responce.CalculatorResponse;
+import ru.s21school.calculatorapi.controller.responce.GraphResponse;
+import ru.s21school.calculatorapi.controller.responce.Status;
+import ru.s21school.calculatorapi.service.CalculatorService;
 import ru.s21school.calculatorapi.service.GraphService;
+import ru.s21school.calculatorapi.service.model.graphModel.GraphData;
 
 @Slf4j
 @RestController
